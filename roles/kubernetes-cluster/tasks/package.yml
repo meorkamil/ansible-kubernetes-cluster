@@ -1,5 +1,5 @@
 - name: Install containerd
-  raw: dnf install containerd.io --allowerasing
+  command: dnf install containerd.io --allowerasing
 
 - name: Install all Kubernetes packages
   yum:

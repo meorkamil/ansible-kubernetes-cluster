@@ -3,6 +3,19 @@
 - name: add Kubernetes packages
   include_vars: kube_packages.yml
 
+- name: Add overlay and br-netfilter
+  template:
+    src: templates/overlay-br-netfilter.j2
+    dest: /etc/modules-load.d/containerd.conf
+
+- name: Add bridge
+  template:
+    src: templates/bridge.j2
+    dest: /etc/sysctl.d/99-kubernetes-cri.conf
+
+- name: Sysctl config without reboot 
+  command: modprobe overlay; modprobe br_netfilter; sysctl --system
+
 - name: Repo 
   include_tasks: repo.yml
 
