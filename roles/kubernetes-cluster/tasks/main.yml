@@ -13,8 +13,14 @@
     src: templates/bridge.j2
     dest: /etc/sysctl.d/99-kubernetes-cri.conf
 
-- name: Sysctl config without reboot 
-  command: modprobe overlay; modprobe br_netfilter; sysctl --system
+- name: Modprobe overlay
+  command: modprobe overlay
+  
+- name: Modprobe br_netfilter
+  command: modprobe br_netfilter 
+
+- name: Sysctl without rebbot
+  command: sysctl --system
 
 - name: Repo 
   include_tasks: repo.yml
