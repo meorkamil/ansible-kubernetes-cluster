@@ -1,0 +1,6 @@
+---
+- name: Kubernetes Cluster Installation
+  hosts: kube-node #including master node
+  roles:
+    - role: kubernetes-cluster
+      user: kubeadmin # default user is kubeadmin

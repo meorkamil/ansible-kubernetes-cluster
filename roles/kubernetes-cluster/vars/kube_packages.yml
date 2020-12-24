@@ -1,0 +1,7 @@
+kube_package:
+  - name: kubeadm
+    state: present
+  - name: kubelet
+    state: present
+  - name: kubectl
+    state: present

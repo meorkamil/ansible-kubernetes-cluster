@@ -1,0 +1,10 @@
+- name: add user
+  user:
+    name: "{{ user }}"
+    # group: docker
+    state: present
+
+- name: add sudo
+  template:
+    src: templates/kube-user.j2
+    dest: /etc/sudoers.d/kube-user
