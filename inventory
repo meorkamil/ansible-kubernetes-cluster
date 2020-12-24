@@ -1,8 +1,9 @@
 [master-node]
-192.168.128.53
+192.168.0.110
 
 [worker-node]
-192.168.128.51
+192.168.0.191
+192.168.0.193
 
 [kube-node:children]
 master-node
