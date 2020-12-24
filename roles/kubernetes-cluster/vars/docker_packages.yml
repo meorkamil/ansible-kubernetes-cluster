@@ -1,7 +1,0 @@
-docker_package:
-  - name: device-mapper-persistent-data
-    state: latest
-  - name: lvm2
-    state: latest
-  - name: docker-ce
-    state: latest
