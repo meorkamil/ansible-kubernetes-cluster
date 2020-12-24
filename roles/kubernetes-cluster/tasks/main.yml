@@ -1,8 +1,5 @@
 ---
 # tasks file for kubernetes-cluster
-- name: add the docker packages
-  include_vars: docker_packages.yml
-
 - name: add Kubernetes packages
   include_vars: kube_packages.yml
 
