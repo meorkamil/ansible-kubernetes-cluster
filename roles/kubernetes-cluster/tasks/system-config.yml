@@ -1,3 +1,22 @@
+- name: Add overlay and br-netfilter
+  template:
+    src: templates/overlay-br-netfilter.j2
+    dest: /etc/modules-load.d/containerd.conf
+
+- name: Add bridge
+  template:
+    src: templates/bridge.j2
+    dest: /etc/sysctl.d/99-kubernetes-cri.conf
+
+- name: Modprobe overlay br-netfilter
+  modprobe:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+  loop: "{{ modprobes }}"
+
+- name: Sysctl without rebbot
+  command: sysctl --system
+
 - name: disable selinux
   selinux:
     state: disabled
@@ -5,8 +24,11 @@
 - name: Swap off
   command: swapoff -a
 
-- name: Permanent swapp off
-  raw: sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
+- name: Remove swapfile from /etc/fstab
+  mount:
+    name: swap
+    fstype: swap
+    state: absent
 
 - name: disable firewall
   service:
