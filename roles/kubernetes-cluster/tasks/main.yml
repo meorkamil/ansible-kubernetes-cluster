@@ -6,6 +6,11 @@
 - name: add modprobe vars
   include_vars: modprobe.yml
 
+- name: Add /etc/hosts
+  template:
+    src: templates/hosts.j2
+    dest: /etc/hosts
+
 - name: Repo 
   include_tasks: repo.yml
 
